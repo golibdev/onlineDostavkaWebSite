@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="/css/products.css">
+        <title>Products Page</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                 <a class="navbar-brand" href="/">
+                    <img src="/images/logo.webp" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Bosh sahifa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/products">Mahsulotlar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#about">Biz haqimizda</a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+
+        {{#if message}}
+        <h5 class="container alert alert-success mt-3">
+            {{message}}
+        </h5>
+        {{/if}}
+
+        <div class="container mt-3">
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/products" class="text-decoration-none">Products Page</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Product</li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="container">
+            <div class="card">
+                <div class="row no-gutters">
+                    <aside class="col-sm-6 border-right">
+                    <article class="gallery-wrap"> 
+                        <div class="img-big-wrap">
+                        <a class="mt-5">
+                            <img src="/uploads/{{results.img}}" class="img-fluid">
+                        </a>
+                        </div>
+                    </article>
+                    </aside>
+                    <main class="col-sm-6">
+                    <article class="content-body">
+                        <h2 class="title">
+                            {{results.title}}
+                        </h2>
+                        <h1>Qisqacha ma`lumot</h1>
+                        <p>{{results.description}}</p>
+                    <div class="h3 mb-4"> 
+                        <var class="price h4">
+                            {{results.price}} so`m
+                        </var> 
+                    </div> <!-- price-wrap.// -->
+
+                    <div class="form-row">
+                        <div class="col">
+                            <button type="button" class="btn  btn-primary w-100" data-bs-toggle="modal" data-bs-target="#exampleModal"> Buyurtma qilish <i class="fas fa-shopping-cart"></i>  </button>
+                        </div>
+                    </div>
+
+                    </article>
+                    </main>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title" id="exampleModalLabel">Buyurtma qilish</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/order/products" method="POST">
+                            <div class="row mb-3">
+                                <div class="col-lg-6 col-md-12">
+                                    <label for="name" class="form-label">To`liq ismingiz</label>
+                                    <div class="input-group has-validation">
+                                        <input type="text" class="form-control" id="name" name="name" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-span-2">
+                                    <label for="region" class="form-label">Viloyat</label>
+                                    <div class="input-group">
+                                        <select name="region" id="region" class="form-select" aria-label="Default select example">
+                                            <option value="ANDIJON" selected>ANDIJON</option>
+                                            <option value="BUXORO">BUXORO</option>
+                                            <option value="FARG`ONA">FARG`ONA</option>
+                                            <option value="JIZZAX">JIZZAX</option>
+                                            <option value="XORAZM">XORAZM</option>
+                                            <option value="NAMANGAN">NAMANGAN</option>
+                                            <option value="NAVOI">NAVOI</option>
+                                            <option value="QASHQADARYO">QASHQADARYO</option>
+                                            <option value="QORAQALPOG`ISTON">QORAQALPOGISTON</option>
+                                            <option value="SAMARQAND">SAMARQAND</option>
+                                            <option value="SIRDARYO">SIRDARYO</option>
+                                            <option value="SURXONDARYO">SURXONDARYO</option>
+                                            <option value="TOSHKENT VILOYATI">TOSHKENT VIL</option>
+                                            <option value="TOSHKENT">TOSHKENT SHAHRI</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-lg-4 col-md-12">
+                                <label for="city" class="form-label">Shahar/tuman</label>
+                                <div class="input-group has-validation">
+                                    <input type="text" class="form-control" id="city" name="city" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <label for="adress" class="form-label">Yashash manzilingiz</label>
+                                <div class="input-group has-validation">
+                                    <input type="text" class="form-control" id="adress" name="adress" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <label for="pochtalcode" class="form-label">Pochta indeksi</label>
+                                <div class="input-group has-validation">
+                                    <input type="text" class="form-control" id="pochtalcode" name="pochtalcode" required>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-lg-6 col-md-12">
+                                <label for="tel" class="form-label">Telefon raqamingiz</label>
+                                <div class="input-group has-validation">
+                                    <input type="tel" class="form-control" id="tel" name="tel" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <label for="number" class="form-label">Qo`shimcha telefon raqam</label>
+                                <div class="input-group has-validation">
+                                    <input type="number" class="form-control numberInput" id="number" name="number">
+                                </div>
+                            </div>
+                            </div>
+                            <div class="text-end">
+                                <button class="btn btn-primary" type="submit"> Buyurtma qilish <i class="fas fa-shopping-cart"></i>
+                            </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Yopish</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+
+    </body>
+</html>

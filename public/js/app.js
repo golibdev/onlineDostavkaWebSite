@@ -1,0 +1,1 @@
+$('#carousel-example-generic').carousel()
